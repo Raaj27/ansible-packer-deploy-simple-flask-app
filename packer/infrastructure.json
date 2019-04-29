@@ -1,0 +1,32 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "eu-central-1",
+    "source_ami": "ami-0842e96b",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "Devops_sre_task_{{isotime | clean_ami_name}}",
+    "ami_description": "debian-jessie-amd64-hvm-2017-01-15-1221-ebs"
+  }],
+  "provisioners": [{
+      "type": "shell",
+      "inline": [
+        "sleep 10",
+        "sudo apt-get install software-properties-common",
+        "sudo apt-add-repository ppa:ansible/ansible",
+        "sudo apt-get update",
+        "sudo apt-get install ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../playbooks/site.yml"
+    }
+  ]
+}
