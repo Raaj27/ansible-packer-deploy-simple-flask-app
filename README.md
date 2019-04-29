@@ -6,7 +6,7 @@ First, create the Flask app. This is the easy part! There’s a QuickStart Guide
 - OS: Debian Jessie 64-bit
 - App Server: Gunicorn/Nginx (Native or Docker)
 - Python: 2.7
-- Flask: 0.12
+- Flask: 1.0.2
 ```
 
 # Tasks
