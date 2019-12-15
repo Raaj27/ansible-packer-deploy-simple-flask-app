@@ -29,7 +29,7 @@
       service: name=hello-world state=started
 
     - name: Copy Nginx site
-      template: src=/home/ubuntu/ansible-packer-deploy-simple-flask-app/templates/hello-world.nginx.j2 dest=/etc/nginx/sites-enabled/hello-world
+      template: src=/home/ubuntu/ansible-packer-deploy-simple-flask-app/templates/nginx.j2 dest=/etc/nginx/sites-enabled/hello-world
       notify:
         - restart nginx
 
