@@ -1,19 +1,21 @@
 - name: Configure application
-  hosts: all
+  hosts: localhost
   become: true
   become_method: sudo
   vars:
-      repository_url: https://github.com/coyainsurance/DevOps-SRE-Interview_ChaturvediSulabh.git
-      repository_path: /home//DevOps-SRE-Interview_ChaturvediSulabh
+      repository_url: https://github.com/Raaj27/ansible-packer-deploy-simple-flask-app.git
+
+      repository_path: /home/ubuntu/ansible-packer-deploy-simple-flask-app
 
   tasks:
     - name: Install packages
-      apt: update_cache=yes name={{ item }} state=present
-      with_items:
-        - git
-        - python-pip
-        - nginx
-
+      apt: 
+        pkg:
+          - git
+          - python-pip
+          - nginx
+        state: latest
+        autoclean: yes
     - name: Clone repository
       git: repo='{{ repository_url }}' dest='{{ repository_path }}'
 
